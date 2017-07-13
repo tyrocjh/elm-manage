@@ -1,0 +1,4 @@
+export const USER_LIST = 'USER_LIST'
+export const ADD_USER_LIST = 'ADD_USER_LIST'
+export const REQUEST_USER_LIST = 'REQUEST_USER_LIST'
+export const GET_USER_LIST_FAILURE = 'GET_USER_LIST_FAILURE'
