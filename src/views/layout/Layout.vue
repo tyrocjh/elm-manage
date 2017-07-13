@@ -33,8 +33,11 @@
       top: 0;
       bottom: 0;
       left: 0;
+      overflow: hidden;
 
       .sidebar {
+        overflow-y: scroll;
+        margin-right: -18px;
         height: 100%;
       }
     }

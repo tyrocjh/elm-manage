@@ -1,16 +1,40 @@
 <template>
   <div class="levelbar">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>组件</el-breadcrumb-item>
-      <el-breadcrumb-item>介绍</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="item in levelList" :key="item">
+        <router-link :to="item.path">{{item.name}}</router-link>
+      </el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'levelbar'
+    name: 'levelbar',
+    data () {
+      return {
+        levelList: []
+      }
+    },
+    created () {
+      this.getLevelList()
+    },
+    methods: {
+      getLevelList () {
+        let matched = []
+        this.$route.matched.filter((item) => {
+          matched.push({
+            name: item.name,
+            path: item.path
+          })
+        })
+        let topLevel = matched[0]
+        if (topLevel && topLevel.name !== '首页' && topLevel.path !== '') {
+          matched.unshift({name: '首页', path: '/'})
+        }
+        this.levelList = matched
+      }
+    }
   }
 </script>
 
