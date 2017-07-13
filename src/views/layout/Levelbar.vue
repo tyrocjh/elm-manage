@@ -21,18 +21,17 @@
     },
     methods: {
       getLevelList () {
-        let matched = []
-        this.$route.matched.filter((item) => {
-          matched.push({
-            name: item.name,
-            path: item.path
-          })
-        })
+        let matched = this.$route.matched.filter((item) => item.name)
         let topLevel = matched[0]
         if (topLevel && topLevel.name !== '首页' && topLevel.path !== '') {
           matched.unshift({name: '首页', path: '/'})
         }
         this.levelList = matched
+      }
+    },
+    watch: {
+      $route () {
+        this.getLevelList()
       }
     }
   }
