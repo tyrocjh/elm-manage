@@ -15,7 +15,7 @@
 
   export default {
     name: 'navbar',
-    components: {Hamburger, Levelbar, Tagsbar}
+    components: { Hamburger, Levelbar, Tagsbar }
   }
 </script>
 

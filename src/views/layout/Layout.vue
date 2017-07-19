@@ -17,7 +17,7 @@
 
   export default {
     name: 'layout',
-    components: {Sidebar, Navbar, AppMain}
+    components: { Sidebar, Navbar, AppMain }
   }
 </script>
 
