@@ -13,7 +13,9 @@ const actions = {
       commit(GRAPH_USER_DISTRIBUTION, {
         userDistribution: res.data.user_city
       })
+    }).catch(err => {
       commit(GRAPH_REQUEST_FAILED)
+      console.log(err)
     })
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="distribution">
+  <div class="distribution" v-loading.body="isFetching">
     <div id="visitor-pie"></div>
   </div>
 </template>
@@ -12,7 +12,7 @@
   import 'echarts/lib/component/legend'
 
   export default {
-    props: ['pieData'],
+    props: ['pieData', 'isFetching'],
     methods: {
       initPie () {
         let option = {
@@ -58,6 +58,11 @@
     mounted () {
       this.myChart = echarts.init(document.getElementById('visitor-pie'))
       this.initPie()
+    },
+    watch: {
+      pieData () {
+        this.initPie()
+      }
     }
   }
 </script>

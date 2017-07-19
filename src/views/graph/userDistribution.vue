@@ -1,6 +1,6 @@
 <template>
   <div class="user-distribution">
-    <distribution :pieData="userDistribution"></distribution>
+    <distribution :pieData="userDistribution" :isFetching="isFetching"></distribution>
   </div>
 </template>
 
@@ -12,7 +12,8 @@
     components: { Distribution },
     computed: {
       ...mapState({
-        userDistribution: ({graph}) => graph.userDistribution
+        userDistribution: ({graph}) => graph.userDistribution,
+        isFetching: ({graph}) => graph.isFetching
       })
     },
     methods: {
