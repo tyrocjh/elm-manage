@@ -1,6 +1,7 @@
 <template>
   <div class="user-list">
     <el-table
+      v-loading.body="isFetching"
       :data="userList"
       style="width: 100%">
       <el-table-column
@@ -45,7 +46,8 @@
         count: ({user}) => user.count,
         currentPage: ({user}) => user.currentPage,
         offset: ({user}) => user.offset,
-        limit: ({user}) => user.limit
+        limit: ({user}) => user.limit,
+        isFetching: ({user}) => user.isFetching
       })
     },
     methods: {
@@ -56,12 +58,15 @@
       ]),
       initData () {
         this.getUsers()
-        this.getCount()
       },
       getUsers () {
         this.getUserList({
           offset: this.offset,
           limit: this.limit
+        }).then(() => {
+          this.getCount()
+        }).catch((err) => {
+          console.log(err)
         })
       },
       getCount () {

@@ -1,23 +1,28 @@
-import { USER_LIST, USER_COUNT, USER_PAGINATION } from '../types'
+import { USER_LIST, USER_COUNT, USER_PAGINATION, USER_REQUEST, USER_REQUEST_FAILED } from '../types'
 import { getUserList, getUserCount } from '../../api/user'
 
 const state = {
-  isFetching: false,
   list: [],
   count: 0,
   currentPage: 1,
   offset: 0,
-  limit: 20
+  limit: 20,
+  isFetching: false
 }
 
 const actions = {
   getUserList ({ commit }, payload) {
-    getUserList(payload).then(response => {
-      commit(USER_LIST, {
-        userList: response.data
+    return new Promise((resolve, reject) => {
+      commit(USER_REQUEST)
+      getUserList(payload).then(res => {
+        commit(USER_LIST, {
+          userList: res.data
+        })
+        resolve(res)
+      }).catch(err => {
+        commit(USER_REQUEST_FAILED)
+        reject(err)
       })
-    }).catch(err => {
-      console.log(err)
     })
   },
   getUserCount ({ commit }) {
@@ -40,12 +45,17 @@ const mutations = {
     state.list = payload.userList
   },
   [USER_COUNT] (state, payload) {
-    state.isFetching = false
     state.count = payload.userCount
   },
   [USER_PAGINATION] (state, val) {
     state.currentPage = val
     state.offset = (val - 1) * state.limit
+  },
+  [USER_REQUEST] (state) {
+    state.isFetching = true
+  },
+  [USER_REQUEST_FAILED] (state) {
+    state.isFetching = false
   }
 }
 
