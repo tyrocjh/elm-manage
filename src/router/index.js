@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Login from '@/views/login'
 import Layout from '@/views/layout/Layout'
 import Dashboard from '@/views/dashboard'
 import UserList from '@/views/userList'
 import UserDistribution from '@/views/graph/userDistribution'
 import Edit from '@/views/edit'
+import AdminSetting from '@/views/adminSetting'
 import Explain from '@/views/Explain'
 
 Vue.use(Router)
@@ -12,6 +14,10 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/login',
+      component: Login
+    },
     {
       path: '/',
       component: Layout,
@@ -53,6 +59,17 @@ export default new Router({
         path: 'editor',
         name: '文本编辑',
         component: Edit
+      }]
+    },
+    {
+      path: '/setting',
+      name: '设置',
+      component: Layout,
+      redirect: '/setting/adminSetting',
+      children: [{
+        path: 'adminSetting',
+        name: '管理员设置',
+        component: AdminSetting
       }]
     },
     {

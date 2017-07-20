@@ -5,16 +5,35 @@
     </div>
     <levelbar></levelbar>
     <tagsbar></tagsbar>
+    <span>{{adminInfo}}</span>
   </div>
 </template>
 
 <script>
+  import { mapState, mapActions } from 'vuex'
   import Levelbar from './Levelbar'
   import Tagsbar from './Tagsbar'
   import Hamburger from '@/components/Hamburger'
 
   export default {
-    components: { Hamburger, Levelbar, Tagsbar }
+    components: { Hamburger, Levelbar, Tagsbar },
+    computed: {
+      ...mapState({
+        adminInfo: ({admin}) => {
+          if (admin.info) {
+            return admin.info.admin
+          }
+        }
+      })
+    },
+    methods: {
+      ...mapActions([
+        'getAdminInfo'
+      ])
+    },
+    created () {
+      this.getAdminInfo()
+    }
   }
 </script>
 
