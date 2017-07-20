@@ -16,7 +16,6 @@
   import AppMain from './AppMain'
 
   export default {
-    name: 'layout',
     components: { Sidebar, Navbar, AppMain }
   }
 </script>

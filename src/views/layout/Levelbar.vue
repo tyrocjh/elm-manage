@@ -10,7 +10,6 @@
 
 <script>
   export default {
-    name: 'levelbar',
     data () {
       return {
         levelList: []

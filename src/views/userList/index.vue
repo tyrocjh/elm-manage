@@ -39,7 +39,6 @@
   import { mapState, mapActions } from 'vuex'
 
   export default {
-    name: 'user-list',
     computed: {
       ...mapState({
         userList: ({user}) => user.list,

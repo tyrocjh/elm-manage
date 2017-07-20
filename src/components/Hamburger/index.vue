@@ -6,7 +6,6 @@
 
 <script>
   export default {
-    name: 'hamburger',
     data () {
       return {
         active: false

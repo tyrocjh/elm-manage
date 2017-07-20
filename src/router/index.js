@@ -5,6 +5,7 @@ import Dashboard from '@/views/dashboard'
 import UserList from '@/views/userList'
 import UserDistribution from '@/views/graph/userDistribution'
 import Edit from '@/views/edit'
+import Explain from '@/views/Explain'
 
 Vue.use(Router)
 
@@ -52,6 +53,17 @@ export default new Router({
         path: 'editor',
         name: '文本编辑',
         component: Edit
+      }]
+    },
+    {
+      path: '/explain',
+      name: '说明',
+      component: Layout,
+      redirect: '/explain/explain',
+      children: [{
+        path: 'explain',
+        name: '说明',
+        component: Explain
       }]
     }
   ]

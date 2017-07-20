@@ -14,7 +14,6 @@
   import Hamburger from '@/components/Hamburger'
 
   export default {
-    name: 'navbar',
     components: { Hamburger, Levelbar, Tagsbar }
   }
 </script>
