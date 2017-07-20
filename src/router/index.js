@@ -4,6 +4,7 @@ import Layout from '@/views/layout/Layout'
 import Dashboard from '@/views/dashboard'
 import UserList from '@/views/userList'
 import UserDistribution from '@/views/graph/userDistribution'
+import Edit from '@/views/edit'
 
 Vue.use(Router)
 
@@ -40,6 +41,17 @@ export default new Router({
         path: 'userDistribution',
         name: '用户分布',
         component: UserDistribution
+      }]
+    },
+    {
+      path: '/edit',
+      name: '编辑',
+      component: Layout,
+      redirect: '/edit/editor',
+      children: [{
+        path: 'editor',
+        name: '文本编辑',
+        component: Edit
       }]
     }
   ]
