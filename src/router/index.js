@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import Login from '@/views/login'
 import Layout from '@/views/layout/Layout'
 import Dashboard from '@/views/dashboard'
-import UserList from '@/views/userList'
+import UserList from '@/views/manage/userList'
+import AdminList from '@/views/manage/adminList'
 import UserDistribution from '@/views/graph/userDistribution'
 import Edit from '@/views/edit'
 import AdminSetting from '@/views/adminSetting'
@@ -37,6 +38,10 @@ export default new Router({
         path: 'userList',
         name: '用户列表',
         component: UserList
+      }, {
+        path: 'adminList',
+        name: '管理员列表',
+        component: AdminList
       }]
     },
     {

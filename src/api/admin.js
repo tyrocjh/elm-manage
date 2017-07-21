@@ -14,3 +14,18 @@ export function getAdminInfo () {
     method: 'get'
   })
 }
+
+export function getAdminList (params) {
+  return fetch({
+    url: '/admin/all',
+    method: 'get',
+    params
+  })
+}
+
+export function getAdminCount () {
+  return fetch({
+    url: '/admin/count',
+    method: 'get'
+  })
+}
