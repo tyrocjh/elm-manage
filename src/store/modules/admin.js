@@ -1,8 +1,10 @@
 import { ADMIN_INFO, ADMIN_LIST, ADMIN_COUNT, ADMIN_PAGINATION, ADMIN_REQUEST, ADMIN_REQUEST_FAILED } from '../types'
-import { login, getAdminInfo, getAdminList, getAdminCount } from '../../api/admin'
+import { login, signout, getAdminInfo, getAdminList, getAdminCount } from '../../api/admin'
 
 const state = {
-  info: '',
+  info: {
+    avatar: 'default.jpg'
+  },
   list: [],
   count: 0,
   currentPage: 1,
@@ -15,6 +17,15 @@ const actions = {
   login ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       login(payload).then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  signout ({ commit }) {
+    return new Promise((resolve, reject) => {
+      signout().then(res => {
         resolve(res)
       }).catch(err => {
         reject(err)

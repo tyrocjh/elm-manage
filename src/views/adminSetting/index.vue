@@ -3,20 +3,20 @@
     <h3>管理员信息</h3>
     <section>
       <ul>
-        <li><span>姓名：</span><span>{{adminInfo.user_name}}</span></li>
-        <li><span>注册时间：</span><span>{{adminInfo.create_time}}</span></li>
-        <li><span>管理员权限：</span><span>{{adminInfo.admin}}</span></li>
-        <li><span>管理员 ID：</span><span>{{adminInfo.id}}</span></li>
+        <li><span>姓名：</span><span>{{adminInfo ? adminInfo.user_name : ''}}</span></li>
+        <li><span>注册时间：</span><span>{{adminInfo ? adminInfo.create_time : ''}}</span></li>
+        <li><span>管理员权限：</span><span>{{adminInfo ? adminInfo.admin : ''}}</span></li>
+        <li><span>管理员 ID：</span><span>{{adminInfo ? adminInfo.id : ''}}</span></li>
         <li>
           <span>更换头像：</span>
-          <span>{{adminInfo.avatar}}</span>
+          <span>{{adminInfo ? adminInfo.avatar : ''}}</span>
           <el-upload
             class="avatar-uploader"
-            :action="baseUrl + '/admin/update/avatar/' + adminInfo.id"
+            :action="adminInfo ? baseUrl + '/admin/update/avatar/' + adminInfo.id : ''"
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload">
-            <img v-if="adminInfo.avatar" :src="baseImgPath + adminInfo.avatar" class="avatar">
+            <img v-if="adminInfo && adminInfo.avatar" :src="adminInfo ? baseImgPath + adminInfo.avatar : ''" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </li>

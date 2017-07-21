@@ -50,7 +50,7 @@
             this.login({
               user_name: this.loginForm.username,
               password: this.loginForm.password
-            }).then((res) => {
+            }).then(res => {
               if (res.data.status === 1) {
                 this.$message({
                   message: res.data.success,
@@ -63,7 +63,7 @@
                   type: 'error'
                 })
               }
-            }).catch((err) => {
+            }).catch(err => {
               this.$message({
                 message: err,
                 type: 'error'

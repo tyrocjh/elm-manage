@@ -8,6 +8,13 @@ export function login (data) {
   })
 }
 
+export function signout () {
+  return fetch({
+    url: '/admin/singout',
+    method: 'get'
+  })
+}
+
 export function getAdminInfo () {
   return fetch({
     url: '/admin/info',
