@@ -5,6 +5,9 @@
     </div>
     <levelbar></levelbar>
     <tagsbar></tagsbar>
+    <div class="screenfull-container">
+      <screenfull></screenfull>
+    </div>
     <el-dropdown @command="handleCommand" menu-align="start" class="avatar-container">
       <img :src="adminInfo ? baseImgPath + adminInfo.avatar : ''" class="avatar" />
       <el-dropdown-menu slot="dropdown">
@@ -20,7 +23,8 @@
   import { baseImgPath } from '@/config/env'
   import Levelbar from './Levelbar'
   import Tagsbar from './Tagsbar'
-  import Hamburger from '@/components/Hamburger'
+  import Hamburger from '@/components/hamburger'
+  import Screenfull from '@/components/screenfull'
 
   export default {
     data () {
@@ -28,7 +32,7 @@
         baseImgPath
       }
     },
-    components: { Hamburger, Levelbar, Tagsbar },
+    components: { Hamburger, Levelbar, Tagsbar, Screenfull },
     computed: {
       ...mapState({
         sidebar: ({app}) => app.sidebar,
@@ -85,6 +89,12 @@
       top: 3px;
       margin-left: 10px;
       margin-right: 15px;
+    }
+
+    .screenfull-container {
+      position: absolute;
+      top: 4px;
+      right: 100px;
     }
 
     .avatar-container {
