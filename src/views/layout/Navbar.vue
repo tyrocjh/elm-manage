@@ -4,7 +4,6 @@
       <hamburger :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
     </div>
     <levelbar></levelbar>
-    <tagsbar></tagsbar>
     <div class="screenfull-container">
       <screenfull></screenfull>
     </div>
@@ -22,7 +21,6 @@
   import { mapState, mapActions } from 'vuex'
   import { baseImgPath } from '@/config/env'
   import Levelbar from './Levelbar'
-  import Tagsbar from './Tagsbar'
   import Hamburger from '@/components/hamburger'
   import Screenfull from '@/components/screenfull'
 
@@ -32,7 +30,7 @@
         baseImgPath
       }
     },
-    components: { Hamburger, Levelbar, Tagsbar, Screenfull },
+    components: { Hamburger, Levelbar, Screenfull },
     computed: {
       ...mapState({
         sidebar: ({app}) => app.sidebar,
