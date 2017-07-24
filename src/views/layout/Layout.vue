@@ -55,6 +55,7 @@
     }
 
     .sidebar-container {
+      z-index: 100;
       transition: all .28s ease-out;
       position: fixed;
       width: 200px;
