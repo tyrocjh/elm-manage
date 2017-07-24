@@ -1,3 +1,5 @@
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
+
 export const ADMIN_INFO = 'ADMIN_INFO'
 export const ADMIN_LIST = 'ADMIN_LIST'
 export const ADMIN_COUNT = 'ADMIN_COUNT'

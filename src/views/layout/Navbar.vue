@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="hamburger-container">
-      <hamburger></hamburger>
+      <hamburger :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
     </div>
     <levelbar></levelbar>
     <tagsbar></tagsbar>
@@ -31,11 +31,13 @@
     components: { Hamburger, Levelbar, Tagsbar },
     computed: {
       ...mapState({
+        sidebar: ({app}) => app.sidebar,
         adminInfo: ({admin}) => admin.info
       })
     },
     methods: {
       ...mapActions([
+        'toggleSideBar',
         'getAdminInfo',
         'signout'
       ]),
@@ -59,6 +61,9 @@
             })
           })
         }
+      },
+      toggleClick () {
+        this.toggleSideBar()
       }
     },
     created () {

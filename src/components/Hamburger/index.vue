@@ -1,19 +1,19 @@
 <template>
-  <div class="hamburger" :class="{'active': active}" @click="toggleHamburger">
+  <div class="hamburger" :class="{'active': isActive}" @click="toggleClick">
     <span></span>
   </div>
 </template>
 
 <script>
   export default {
-    data () {
-      return {
-        active: false
-      }
-    },
-    methods: {
-      toggleHamburger () {
-        this.active = !this.active
+    props: {
+      isActive: {
+        type: Boolean,
+        default: false
+      },
+      toggleClick: {
+        type: Function,
+        default: null
       }
     }
   }
