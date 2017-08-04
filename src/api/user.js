@@ -14,3 +14,10 @@ export function getUserCount () {
     method: 'get'
   })
 }
+
+export function getUserCountByCurDate (date) {
+  return fetch({
+    url: '/statis/user/' + date + '/count',
+    method: 'get'
+  })
+}

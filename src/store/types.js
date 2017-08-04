@@ -1,4 +1,7 @@
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
+export const API_COUNT = 'API_COUNT'
+export const APP_REQUEST = 'APP_REQUEST'
+export const APP_REQUEST_FAILED = 'APP_REQUEST_FAILED'
 
 export const ADMIN_INFO = 'ADMIN_INFO'
 export const ADMIN_LIST = 'ADMIN_LIST'
