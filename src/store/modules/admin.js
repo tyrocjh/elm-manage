@@ -1,5 +1,5 @@
-import { ADMIN_INFO, ADMIN_LIST, ADMIN_COUNT, ADMIN_PAGINATION, ADMIN_REQUEST, ADMIN_REQUEST_FAILED } from '../types'
-import { login, signout, getAdminInfo, getAdminList, getAdminCount } from '../../api/admin'
+import { ADMIN_INFO, ADMIN_LIST, ADMIN_COUNT, ADMIN_COUNT_CUR_DATE, ADMIN_PAGINATION, ADMIN_REQUEST, ADMIN_REQUEST_FAILED } from '../types'
+import { login, signout, getAdminInfo, getAdminList, getAdminCount, getAdminCountByCurDate } from '@/api/admin'
 
 const state = {
   info: {
@@ -7,6 +7,7 @@ const state = {
   },
   list: [],
   count: 0,
+  countByCurDate: 0,
   currentPage: 1,
   offset: 0,
   limit: 20,
@@ -66,6 +67,20 @@ const actions = {
       console.log(err)
     })
   },
+  getAdminCountByCurDate ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      commit(ADMIN_REQUEST)
+      getAdminCountByCurDate(payload).then(res => {
+        commit(ADMIN_COUNT_CUR_DATE, {
+          countByCurDate: res.data.count
+        })
+        resolve(res)
+      }).catch(err => {
+        commit(ADMIN_REQUEST_FAILED)
+        reject(err)
+      })
+    })
+  },
   currentChange ({ commit }, val) {
     commit(ADMIN_PAGINATION, val)
   }
@@ -82,6 +97,9 @@ const mutations = {
   },
   [ADMIN_COUNT] (state, payload) {
     state.count = payload.adminCount
+  },
+  [ADMIN_COUNT_CUR_DATE] (state, payload) {
+    state.countByCurDate = payload.countByCurDate
   },
   [ADMIN_PAGINATION] (state, val) {
     state.currentPage = val

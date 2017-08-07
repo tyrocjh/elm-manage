@@ -1,5 +1,5 @@
 import { GRAPH_USER_DISTRIBUTION, GRAPH_REQUEST, GRAPH_REQUEST_FAILED } from '../types'
-import { getUserDistribution } from '../../api/graph'
+import { getUserDistribution } from '@/api/graph'
 
 const state = {
   userDistribution: '',

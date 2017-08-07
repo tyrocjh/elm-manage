@@ -1,4 +1,4 @@
-import fetch from '../utils/fetch'
+import fetch from '@/utils/fetch'
 
 export function login (data) {
   return fetch({
@@ -33,6 +33,13 @@ export function getAdminList (params) {
 export function getAdminCount () {
   return fetch({
     url: '/admin/count',
+    method: 'get'
+  })
+}
+
+export function getAdminCountByCurDate (date) {
+  return fetch({
+    url: '/statis/admin/' + date + '/count',
     method: 'get'
   })
 }
