@@ -5,18 +5,26 @@
   "author": "tyroCCC",
   "private": true,
   "scripts": {
+    "start-server": "node server/server.js",
+    "watch-server": "nodemon server/server.js",
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src",
+    "task": "node ./server/tasks/userData.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "body-parser": "^1.18.2",
     "echarts": "^3.6.2",
     "element-ui": "^1.3.7",
+    "express": "^4.16.2",
     "font-awesome": "^4.7.0",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
+    "mongoose": "^4.13.4",
     "normalize.css": "^7.0.0",
+    "path": "^0.12.7",
     "screenfull": "^3.3.1",
     "vue": "^2.3.3",
     "vue-quill-editor": "^2.2.4",
