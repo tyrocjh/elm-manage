@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 const UserInfo = require('../models/userInfo')
 const Statis = require('../models/statis')
+const Order = require('../models/order')
 
 router.get('/api/count', function (req, res) {
   Statis
@@ -52,6 +53,26 @@ router.get('/user/:date/count', function (req, res) {
         res.json({
           status: 'fail',
           msg: '查询失败！'
+        })
+      } else {
+        res.json({
+          status: 1,
+          count
+        })
+      }
+    })
+})
+
+router.get('/order/:date/count', function (req, res) {
+  const date = req.params.date
+  Order
+    .find({formatted_created_at: eval('/^' + date + '/gi')})
+    .count({})
+    .exec(function (err, count) {
+      if (err) {
+        res.json({
+          status: 'fail',
+          msg: '获取当天订单数量失败！'
         })
       } else {
         res.json({
