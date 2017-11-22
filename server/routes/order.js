@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
     .exec(function (err, orders) {
       if (err) {
         res.json({
-          status: 'fail',
+          status: 0,
           msg: '获取订单数据失败！'
         })
       } else {
@@ -49,7 +49,7 @@ router.get('/count', function (req, res) {
     .exec(function (err, count) {
       if (err) {
         res.json({
-          status: 'fail',
+          status: 0,
           msg: '获取订单数量失败！'
         })
       } else {

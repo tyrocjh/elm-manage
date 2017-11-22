@@ -1,6 +1,7 @@
 /* eslint-disable no-eval */
 const express = require('express')
 const router = express.Router()
+const Admin = require('../models/admin')
 const UserInfo = require('../models/userInfo')
 const Statis = require('../models/statis')
 const Order = require('../models/order')
@@ -11,7 +12,7 @@ router.get('/api/count', function (req, res) {
     .exec(function (err, count) {
       if (err) {
         res.json({
-          status: 'fail',
+          status: 0,
           msg: '获取所有API请求次数失败！'
         })
       } else {
@@ -31,8 +32,28 @@ router.get('/api/:date/count', function (req, res) {
     .exec(function (err, count) {
       if (err) {
         res.json({
-          status: 'fail',
+          status: 0,
           msg: '获取当天API请求次数失败！'
+        })
+      } else {
+        res.json({
+          status: 1,
+          count
+        })
+      }
+    })
+})
+
+router.get('/admin/:date/count', function (req, res) {
+  const date = req.params.date
+  Admin
+    .find({create_time: eval('/^' + date + '/gi')})
+    .count({})
+    .exec(function (err, count) {
+      if (err) {
+        res.json({
+          status: 0,
+          msg: '获取当天注册管理员人数失败！'
         })
       } else {
         res.json({
@@ -51,8 +72,8 @@ router.get('/user/:date/count', function (req, res) {
     .exec(function (err, count) {
       if (err) {
         res.json({
-          status: 'fail',
-          msg: '查询失败！'
+          status: 0,
+          msg: '获取当天注册人数失败！'
         })
       } else {
         res.json({
@@ -71,7 +92,7 @@ router.get('/order/:date/count', function (req, res) {
     .exec(function (err, count) {
       if (err) {
         res.json({
-          status: 'fail',
+          status: 0,
           msg: '获取当天订单数量失败！'
         })
       } else {

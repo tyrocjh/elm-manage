@@ -29,7 +29,7 @@ router.get('/count', function (req, res) {
     .exec(function (err, count) {
       if (err) {
         res.json({
-          status: 'fail',
+          status: 0,
           msg: '查询失败！'
         })
       } else {

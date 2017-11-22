@@ -3,13 +3,13 @@ var mongoose = require('mongoose'),
   Eventproxy = require('eventproxy'),
   jsonfile = require('jsonfile'),
   config = require('../config'),
-  UserInfo = require('../models/userInfo')
+  Admin = require('../models/admin')
 
 var ep = new Eventproxy(),
-  pageNum = 100,
+  pageNum = 1,
   pageUrls = [],
   dataArray = [],
-  outputFile = 'server/tasks/userList.json'
+  outputFile = 'server/tasks/adminList.json'
 
 mongoose.connect(config.database)
 mongoose.connection.on('error', function () {
@@ -17,7 +17,7 @@ mongoose.connection.on('error', function () {
 })
 
 for (var i = 0; i < pageNum; i++) {
-  pageUrls.push('http://cangdu.org:8001/v1/users/list?offset=' + 50 * i + '&limit=50')
+  pageUrls.push('http://cangdu.org:8001/bos/orders?offset=' + 50 * i + '&limit=50')
 }
 
 function createData (M, arr) {
@@ -31,7 +31,7 @@ function createData (M, arr) {
 }
 
 function processData (data) {
-  createData(UserInfo, data)
+  createData(Admin, data)
 }
 
 function outputData (data) {
@@ -51,7 +51,9 @@ function start () {
   pageUrls.forEach(function (pageUrl) {
     superagent.get(pageUrl)
       .end(function (err, res) {
-        dataArray = dataArray.concat(res.body)
+        if (res && res.body) {
+          dataArray = dataArray.concat(res.body)
+        }
         ep.emit('handleResult')
       })
   })

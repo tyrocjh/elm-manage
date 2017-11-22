@@ -44,8 +44,8 @@ function outputData (data) {
 
 function start () {
   ep.after('handleResult', pageNum, function () {
-    // outputData(dataArray)
-    processData(dataArray)
+    outputData(dataArray)
+    // processData(dataArray)
   })
 
   pageUrls.forEach(function (pageUrl) {
